@@ -12,7 +12,7 @@ public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
 
 //    @OneToMany
 //    private List<Contact> contacts;
