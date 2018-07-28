@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-abstract public class Ad {
+public class Ad {
 
     Ad() {
     }
