@@ -25,6 +25,8 @@ public class Ad {
     private String description;
     private String adType;
     private String userLogin;
+    private String price;
+    private String currency;
 
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
@@ -64,20 +66,5 @@ public class Ad {
 
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
-    }
-
-    @Override
-    public String toString() {
-        return "Ad{" +
-                "id=" + id +
-//                ", contacts=" + contacts +
-                ", countryFrom='" + countryFrom + '\'' +
-                ", countryTo='" + countryTo + '\'' +
-                ", cityFrom='" + cityFrom + '\'' +
-                ", cityTo='" + cityTo + '\'' +
-                ", description='" + description + '\'' +
-                ", adType='" + adType + '\'' +
-                ", userLogin='" + userLogin + '\'' +
-                '}';
     }
 }
