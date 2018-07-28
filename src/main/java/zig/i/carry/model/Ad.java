@@ -68,6 +68,18 @@ public class Ad {
         this.userLogin = userLogin;
     }
 
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public String toString() {
         return "Ad{" +
