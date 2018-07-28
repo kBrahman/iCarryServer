@@ -23,7 +23,6 @@ abstract public class Ad {
     private String cityFrom;
     private String cityTo;
     private String description;
-    private String adType;
     private String userLogin;
     private String price;
     private String currency;
@@ -60,10 +59,6 @@ abstract public class Ad {
         this.description = description;
     }
 
-    public void setAdType(String adType) {
-        this.adType = adType;
-    }
-
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
@@ -89,7 +84,6 @@ abstract public class Ad {
                 ", cityFrom='" + cityFrom + '\'' +
                 ", cityTo='" + cityTo + '\'' +
                 ", description='" + description + '\'' +
-                ", adType='" + adType + '\'' +
                 ", userLogin='" + userLogin + '\'' +
                 ", price='" + price + '\'' +
                 ", currency='" + currency + '\'' +
