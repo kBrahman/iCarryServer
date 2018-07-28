@@ -5,7 +5,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-public class Ad {
+@MappedSuperclass
+abstract public class Ad {
 
     Ad() {
     }
