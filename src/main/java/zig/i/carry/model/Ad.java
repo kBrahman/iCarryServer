@@ -67,4 +67,21 @@ public class Ad {
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
     }
+
+    @Override
+    public String toString() {
+        return "Ad{" +
+                "id=" + id +
+                ", countryFrom='" + countryFrom + '\'' +
+                ", countryTo='" + countryTo + '\'' +
+                ", cityFrom='" + cityFrom + '\'' +
+                ", cityTo='" + cityTo + '\'' +
+                ", description='" + description + '\'' +
+                ", adType='" + adType + '\'' +
+                ", userLogin='" + userLogin + '\'' +
+                ", price='" + price + '\'' +
+                ", currency='" + currency + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
