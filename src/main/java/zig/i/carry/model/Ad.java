@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class Ad {
 
-    public Ad() {
+    Ad() {
     }
 
     @Id
