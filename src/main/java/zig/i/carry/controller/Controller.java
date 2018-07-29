@@ -98,7 +98,7 @@ public class Controller {
     }
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
-    private String publish(@RequestBody Ad ad) {
+    private <T extends Ad> String publish(@RequestBody T ad) {
         System.out.println("ad=>" + ad.toString());
         adRepo.save(ad);
         return PUBLISH_OK;

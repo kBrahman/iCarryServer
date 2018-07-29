@@ -5,17 +5,14 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
-
-@Entity
-@Inheritance(strategy = TABLE_PER_CLASS)
+@MappedSuperclass
 public class Ad {
 
     Ad() {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
 //    @OneToMany
