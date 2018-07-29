@@ -9,7 +9,7 @@ import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
 
 @Entity
 @Inheritance(strategy = TABLE_PER_CLASS)
-public abstract class Ad {
+public class Ad {
 
     Ad() {
     }
