@@ -15,7 +15,7 @@ public abstract class Ad {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
 //    @OneToMany
