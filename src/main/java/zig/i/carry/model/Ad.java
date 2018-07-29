@@ -5,9 +5,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@MappedSuperclass
+import static javax.persistence.InheritanceType.TABLE_PER_CLASS;
+
 @Entity
-public class Ad {
+@Inheritance(strategy = TABLE_PER_CLASS)
+public abstract class Ad {
 
     Ad() {
     }
