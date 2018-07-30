@@ -7,13 +7,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
 import java.util.Date;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, property = "class")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = OrderAd.class, name = "orderAd"),
         @JsonSubTypes.Type(value = OfferAd.class, name = "offerAd")})
 
 @MappedSuperclass
-public class Ad {
+public abstract class Ad {
 
     Ad() {
     }
