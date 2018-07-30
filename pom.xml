@@ -24,7 +24,8 @@
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
-            <artifactId>2.3.1</artifactId>
+            <artifactId>gson</artifactId>
+            <version>2.3.1</version>
         </dependency>
         <dependency>
             <groupId>javax.mail</groupId>
