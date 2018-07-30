@@ -10,7 +10,7 @@ import java.util.Date;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = OrderAd.class, name = "orderAd"),
-        @JsonSubTypes.Type(value = OrderAd.class, name = "offerAd")})
+        @JsonSubTypes.Type(value = OfferAd.class, name = "offerAd")})
 
 @MappedSuperclass
 public abstract class Ad {
