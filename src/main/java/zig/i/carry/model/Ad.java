@@ -8,9 +8,6 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class Ad {
 
-    Ad() {
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

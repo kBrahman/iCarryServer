@@ -99,7 +99,7 @@ public class Controller {
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
     private String publish(@RequestBody Ad ad) {
-        System.out.println("ad=>" + ad.toString() + "; className=>" + ad.getClass().getSimpleName());
+        System.out.println("ad=>" + ad.toString());
         adRepo.save(ad);
         return PUBLISH_OK;
     }
