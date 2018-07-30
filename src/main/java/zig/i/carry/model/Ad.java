@@ -13,7 +13,7 @@ import java.util.Date;
         @JsonSubTypes.Type(value = OfferAd.class, name = "offerAd")})
 
 @MappedSuperclass
-public abstract class Ad {
+public class Ad {
 
     Ad() {
     }
