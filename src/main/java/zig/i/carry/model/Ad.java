@@ -1,16 +1,9 @@
 package zig.i.carry.model;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
-
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = OrderAd.class, name = "orderAd"),
-        @JsonSubTypes.Type(value = OfferAd.class, name = "offerAd")})
 
 @MappedSuperclass
 public class Ad {
