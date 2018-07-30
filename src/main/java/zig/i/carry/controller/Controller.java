@@ -10,6 +10,7 @@ import zig.i.carry.model.OfferAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.ContactRepo;
+import zig.i.carry.repo.OfferAdRepo;
 import zig.i.carry.repo.UserRepo;
 
 import javax.mail.Message;
@@ -41,12 +42,14 @@ public class Controller {
     private final UserRepo uRepo;
     private final ContactRepo contactRepo;
     private final AdRepo adRepo;
+    private final OfferAdRepo offerAdRepo;
 
     @Autowired
-    public Controller(UserRepo userRepo, ContactRepo contactRepo, AdRepo adRepo) {
+    public Controller(UserRepo userRepo, ContactRepo contactRepo, AdRepo adRepo, OfferAdRepo offerAdRepo) {
         this.uRepo = userRepo;
         this.contactRepo = contactRepo;
         this.adRepo = adRepo;
+        this.offerAdRepo = offerAdRepo;
     }
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
@@ -100,7 +103,8 @@ public class Controller {
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
     private String publish(@RequestBody OfferAd ad) {
         System.out.println("ad=>" + ad.toString() + "; className=>" + ad.getClass().getSimpleName());
-        adRepo.save(ad);
+//        adRepo.save(ad);
+        offerAdRepo.save(ad);
         return PUBLISH_OK;
     }
 
