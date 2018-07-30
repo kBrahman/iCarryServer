@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import zig.i.carry.model.OfferAd;
+import zig.i.carry.model.Ad;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.ContactRepo;
@@ -98,7 +98,7 @@ public class Controller {
     }
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
-    private String publish(@RequestBody OfferAd ad) {
+    private String publish(@RequestBody Ad ad) {
         System.out.println("ad=>" + ad.toString() + "; className=>" + ad.getClass().getSimpleName());
         adRepo.save(ad);
         return PUBLISH_OK;
