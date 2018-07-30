@@ -84,7 +84,7 @@ public abstract class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
+        return getClass().getSimpleName() + "{" +
                 "id=" + id +
                 ", countryFrom='" + countryFrom + '\'' +
                 ", countryTo='" + countryTo + '\'' +
