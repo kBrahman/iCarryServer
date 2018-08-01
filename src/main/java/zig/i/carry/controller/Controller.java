@@ -18,7 +18,10 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
 
 @RestController
 public class Controller {
@@ -35,7 +38,7 @@ public class Controller {
     private static final String NOT_REGISTERED = "NOT_REGISTERED";
     private static final String SIGN_IN = "/sign_in";
     private static final String PUBLISH = "/publish";
-    private static final String PUBLISH_OK = "{\\\"response\\\":\\\"publish_ok\\\"}";
+    private static final String PUBLISH_OK = "{'response':'publish_ok'}";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final ContactRepo contactRepo;
@@ -64,7 +67,6 @@ public class Controller {
     @RequestMapping(value = REGISTER, method = RequestMethod.POST)
     private String register(@RequestBody String params) {
         String[] paramArr = params.substring(1, params.length() - 1).split(":");
-        System.out.println("paramarr=>" + Arrays.toString(paramArr));
         User one = uRepo.findOne(Example.of(new User(paramArr[2])));
         if (one != null) {
             one.setName(paramArr[0]);
