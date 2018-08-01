@@ -99,12 +99,12 @@ public class Controller {
     }
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
-    private String publish(@RequestBody Ad ad) {
+    private boolean publish(@RequestBody Ad ad) {
         System.out.println("ad=>" + ad.toString());
         long t1 = System.currentTimeMillis();
         adRepo.save(ad);
         System.out.println((System.currentTimeMillis() - t1));
-        return PUBLISH_OK;
+        return true;
     }
 
     private String sendPwd(String login, String pwd) {
