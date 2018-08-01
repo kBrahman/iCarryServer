@@ -34,7 +34,6 @@ public class Controller {
     private static final String PASSWORD_SENT = "PASSWORD_SENT";
     private static final String NOT_REGISTERED = "NOT_REGISTERED";
     private static final String SIGN_IN = "/sign_in";
-    public static final String GET_CONTACTS = "/get_contacts";
     private static final String PUBLISH = "/publish";
     private static final String PUBLISH_OK = "publish_ok";
     private Map<String, Integer> map = new HashMap<>();
@@ -100,7 +99,9 @@ public class Controller {
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
     private String publish(@RequestBody Ad ad) {
         System.out.println("ad=>" + ad.toString());
+        long t1 = System.currentTimeMillis();
         adRepo.save(ad);
+        System.out.println((System.currentTimeMillis() - t1));
         return PUBLISH_OK;
     }
 
