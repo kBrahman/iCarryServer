@@ -35,7 +35,7 @@ public class Controller {
     private static final String NOT_REGISTERED = "NOT_REGISTERED";
     private static final String SIGN_IN = "/sign_in";
     private static final String PUBLISH = "/publish";
-    private static final String PUBLISH_OK = "publish_ok";
+    private static final String PUBLISH_OK = "{response:publish_ok}";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final ContactRepo contactRepo;
