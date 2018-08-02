@@ -82,6 +82,42 @@ public abstract class Ad {
         this.createDate = createDate;
     }
 
+    public String getCountryFrom() {
+        return countryFrom;
+    }
+
+    public String getCountryTo() {
+        return countryTo;
+    }
+
+    public String getCityFrom() {
+        return cityFrom;
+    }
+
+    public String getCityTo() {
+        return cityTo;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getUserLogin() {
+        return userLogin;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + "{" +
