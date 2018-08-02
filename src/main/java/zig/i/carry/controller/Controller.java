@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import zig.i.carry.model.Ad;
+import zig.i.carry.model.OfferAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.ContactRepo;
@@ -18,10 +19,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 public class Controller {
@@ -38,7 +36,7 @@ public class Controller {
     private static final String NOT_REGISTERED = "NOT_REGISTERED";
     private static final String SIGN_IN = "/sign_in";
     private static final String PUBLISH = "/publish";
-    private static final String PUBLISH_OK = "publish_ok";
+    private static final String OFFERS = "/offers";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final ContactRepo contactRepo;
@@ -106,6 +104,14 @@ public class Controller {
         System.out.println((System.currentTimeMillis() - t1));
         return true;
     }
+
+    @RequestMapping(value = OFFERS, method = RequestMethod.GET)
+    private List<Ad> getOffers() {
+        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()));
+        System.out.println(all);
+        return all;
+    }
+
 
     private String sendPwd(String login, String pwd) {
         try {
