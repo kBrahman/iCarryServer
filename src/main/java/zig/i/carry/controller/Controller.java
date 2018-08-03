@@ -27,7 +27,6 @@ public class Controller {
     private static final String VALIDATE = "/validate";
     private static final String YANDEX_COM = "smtp.yandex.com";
     private static final String OK_EMAIL = "ok_email";
-    private static final String ERROR_EMAIL = "error_email";
     private static final String VERIFY = "/verify";
     private static final String REGISTER = "/register";
     private static final String REMIND = "/remind";
@@ -50,7 +49,7 @@ public class Controller {
     }
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
-    private String validate(@RequestBody String email) {
+    private boolean validate(@RequestBody String email) {
         return sendVerificationCode(email);
     }
 
@@ -128,7 +127,7 @@ public class Controller {
         return PASSWORD_SENT;
     }
 
-    private String sendVerificationCode(String email) {
+    private boolean sendVerificationCode(String email) {
         int i;
         try {
             Message message = createMsg(email);
@@ -142,11 +141,11 @@ public class Controller {
             smtp.sendMessage(message, message.getAllRecipients());
         } catch (MessagingException e) {
             e.printStackTrace();
-            return ERROR_EMAIL;
+            return false;
         }
         map.put(email.substring(1, email.length() - 1), i);
         System.out.println("email is sent");
-        return OK_EMAIL;
+        return true;
     }
 
     private Message createMsg(String email) throws MessagingException {
