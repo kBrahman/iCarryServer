@@ -57,7 +57,8 @@ public class Controller {
     private boolean verify(@RequestBody String emailAndCode) {
         String substring = emailAndCode.substring(1, emailAndCode.length() - 1);
         String[] strings = substring.split(":");
-        return map.remove(strings[0]) == null;
+        System.out.println(VERIFY);
+        return map.remove(strings[0]) != null;
     }
 
     @RequestMapping(value = REGISTER, method = RequestMethod.POST)
