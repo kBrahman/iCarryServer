@@ -26,7 +26,6 @@ public class Controller {
 
     private static final String VALIDATE = "/validate";
     private static final String YANDEX_COM = "smtp.yandex.com";
-    private static final String OK_EMAIL = "ok_email";
     private static final String VERIFY = "/verify";
     private static final String REGISTER = "/register";
     private static final String REMIND = "/remind";
@@ -62,7 +61,7 @@ public class Controller {
     }
 
     @RequestMapping(value = REGISTER, method = RequestMethod.POST)
-    private String register(@RequestBody String params) {
+    private boolean register(@RequestBody String params) {
         String[] paramArr = params.substring(1, params.length() - 1).split(":");
         User one = uRepo.findOne(Example.of(new User(paramArr[2])));
         if (one != null) {
@@ -73,7 +72,7 @@ public class Controller {
         }
         uRepo.save(one);
         System.out.println("registered");
-        return "OK";
+        return true;
     }
 
     @RequestMapping(value = REMIND, method = RequestMethod.POST)
