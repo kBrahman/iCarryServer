@@ -2,6 +2,7 @@ package zig.i.carry.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -105,7 +106,7 @@ public class Controller {
 
     @RequestMapping(value = OFFERS, method = RequestMethod.GET)
     private List<Ad> getOffers() {
-        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()));
+        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC));
         System.out.println(all);
         return all;
     }
