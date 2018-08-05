@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import zig.i.carry.model.Ad;
 import zig.i.carry.model.OfferAd;
+import zig.i.carry.model.OrderAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.ContactRepo;
@@ -36,6 +37,7 @@ public class Controller {
     private static final String SIGN_IN = "/sign_in";
     private static final String PUBLISH = "/publish";
     private static final String OFFERS = "/offers";
+    private static final String ORDERS = "/orders";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final ContactRepo contactRepo;
@@ -107,6 +109,13 @@ public class Controller {
     @RequestMapping(value = OFFERS, method = RequestMethod.GET)
     private List<Ad> getOffers() {
         List<Ad> all = adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC, "id"));
+        System.out.println(all);
+        return all;
+    }
+
+    @RequestMapping(value = ORDERS, method = RequestMethod.GET)
+    private List<Ad> getOrders() {
+        List<Ad> all = adRepo.findAll(Example.of(new OrderAd()), new Sort(Sort.Direction.DESC, "id"));
         System.out.println(all);
         return all;
     }
