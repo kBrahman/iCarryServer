@@ -106,7 +106,7 @@ public class Controller {
 
     @RequestMapping(value = OFFERS, method = RequestMethod.GET)
     private List<Ad> getOffers() {
-        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC));
+        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC, "id"));
         System.out.println(all);
         return all;
     }
