@@ -23,8 +23,6 @@ public abstract class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToMany
-    private List<Contact> contacts;
 
     private String countryFrom;
     private String countryTo;
@@ -41,10 +39,6 @@ public abstract class Ad {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setContacts(List<Contact> contacts) {
-        this.contacts = contacts;
     }
 
     public void setCountryFrom(String countryFrom) {
@@ -117,10 +111,6 @@ public abstract class Ad {
 
     public Date getCreateDate() {
         return createDate;
-    }
-
-    public List<Contact> getContacts() {
-        return contacts;
     }
 
     @Override
