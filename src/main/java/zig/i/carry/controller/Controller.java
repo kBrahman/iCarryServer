@@ -99,25 +99,18 @@ public class Controller {
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
     private boolean publish(@RequestBody Ad ad) {
-        System.out.println("ad=>" + ad.toString());
-        long t1 = System.currentTimeMillis();
         adRepo.save(ad);
-        System.out.println((System.currentTimeMillis() - t1));
         return true;
     }
 
     @RequestMapping(value = OFFERS, method = RequestMethod.GET)
     private List<Ad> getOffers() {
-        List<Ad> all = adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC, "id"));
-        System.out.println(all);
-        return all;
+        return adRepo.findAll(Example.of(new OfferAd()), new Sort(Sort.Direction.DESC, "id"));
     }
 
     @RequestMapping(value = ORDERS, method = RequestMethod.GET)
     private List<Ad> getOrders() {
-        List<Ad> all = adRepo.findAll(Example.of(new OrderAd()), new Sort(Sort.Direction.DESC, "id"));
-        System.out.println(all);
-        return all;
+        return adRepo.findAll(Example.of(new OrderAd()), new Sort(Sort.Direction.DESC, "id"));
     }
 
 

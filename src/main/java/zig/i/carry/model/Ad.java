@@ -6,6 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
@@ -22,8 +23,8 @@ public abstract class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-//    @OneToMany
-//    private List<Contact> contacts;
+    @OneToMany
+    private List<Contact> contacts;
 
     private String countryFrom;
     private String countryTo;
@@ -42,9 +43,9 @@ public abstract class Ad {
         this.id = id;
     }
 
-//    public void setContacts(List<Contact> contacts) {
-//        this.contacts = contacts;
-//    }
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
+    }
 
     public void setCountryFrom(String countryFrom) {
         this.countryFrom = countryFrom;
@@ -116,6 +117,10 @@ public abstract class Ad {
 
     public Date getCreateDate() {
         return createDate;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
     }
 
     @Override
