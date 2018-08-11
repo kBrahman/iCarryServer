@@ -99,6 +99,7 @@ public class Controller {
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
     private boolean publish(@RequestBody Ad ad) {
+        System.out.println(ad);
         adRepo.save(ad);
         return true;
     }
