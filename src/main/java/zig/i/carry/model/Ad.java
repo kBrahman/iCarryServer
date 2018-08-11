@@ -23,7 +23,7 @@ public abstract class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToMany
+    @ManyToOne
     private List<Contact> contacts;
     private String countryFrom;
     private String countryTo;
