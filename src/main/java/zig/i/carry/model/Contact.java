@@ -26,4 +26,12 @@ public class Contact {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Contact{" +
+                "id=" + id +
+                ", value='" + value + '\'' +
+                '}';
+    }
 }

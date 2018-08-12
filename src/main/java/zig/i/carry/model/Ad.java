@@ -135,6 +135,7 @@ public abstract class Ad {
                 ", price='" + price + '\'' +
                 ", currency='" + currency + '\'' +
                 ", createDate=" + createDate +
+                ",contacts=" + contacts +
                 '}';
     }
 }
