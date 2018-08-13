@@ -12,7 +12,6 @@ import zig.i.carry.model.OfferAd;
 import zig.i.carry.model.OrderAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
-import zig.i.carry.repo.ContactRepo;
 import zig.i.carry.repo.UserRepo;
 
 import javax.mail.Message;
@@ -21,6 +20,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.EntityManager;
 import java.util.*;
 
 @RestController
@@ -40,14 +40,14 @@ public class Controller {
     private static final String ORDERS = "/orders";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
-    private final ContactRepo contactRepo;
     private final AdRepo adRepo;
+    private final EntityManager em;
 
     @Autowired
-    public Controller(UserRepo userRepo, ContactRepo contactRepo, AdRepo adRepo) {
+    public Controller(UserRepo userRepo, AdRepo adRepo, EntityManager em) {
         this.uRepo = userRepo;
-        this.contactRepo = contactRepo;
         this.adRepo = adRepo;
+        this.em = em;
     }
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
@@ -91,10 +91,7 @@ public class Controller {
     private boolean signIn(@RequestBody String loginPwd) {
         loginPwd = loginPwd.substring(1, loginPwd.length() - 1);
         String[] paramArr = loginPwd.split(":");
-        System.out.println("sign in");
-        boolean exists = uRepo.exists(Example.of(new User(paramArr[0], paramArr[1])));
-        System.out.println("user exists=>" + exists);
-        return exists;
+        return uRepo.exists(Example.of(new User(paramArr[0], paramArr[1])));
     }
 
     @RequestMapping(value = PUBLISH, method = RequestMethod.POST)
@@ -112,6 +109,13 @@ public class Controller {
     @RequestMapping(value = ORDERS, method = RequestMethod.GET)
     private List<Ad> getOrders() {
         return adRepo.findAll(Example.of(new OrderAd()), new Sort(Sort.Direction.DESC, "id"));
+    }
+
+    @RequestMapping(value = "my_ads", method = RequestMethod.GET)
+    private List<Ad> getMyAds(@RequestBody String login) {
+        List<Ad> ads = adRepo.findByUserLogin(login);
+        System.out.println(ads);
+        return ads;
     }
 
 
