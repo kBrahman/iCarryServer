@@ -38,6 +38,7 @@ public class Controller {
     private static final String PUBLISH = "/publish";
     private static final String OFFERS = "/offers";
     private static final String ORDERS = "/orders";
+    public static final String MY_ADS = "/my_ads";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
@@ -111,7 +112,7 @@ public class Controller {
         return adRepo.findAll(Example.of(new OrderAd()), new Sort(Sort.Direction.DESC, "id"));
     }
 
-    @RequestMapping(value = "my_ads", method = RequestMethod.GET)
+    @RequestMapping(value = MY_ADS, method = RequestMethod.GET)
     private List<Ad> getMyAds(@RequestBody String login) {
         List<Ad> ads = adRepo.getAdsByUserLogin(login);
         System.out.println(ads);
