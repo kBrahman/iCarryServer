@@ -13,7 +13,7 @@ import java.util.List;
         @JsonSubTypes.Type(value = OrderAd.class, name = "orderAd"),
         @JsonSubTypes.Type(value = OfferAd.class, name = "offerAd")})
 
-@Inheritance
+@MappedSuperclass
 public abstract class Ad {
 
     public Ad() {
