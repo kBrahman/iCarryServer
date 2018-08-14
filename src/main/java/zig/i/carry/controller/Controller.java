@@ -114,6 +114,7 @@ public class Controller {
 
     @RequestMapping(value = MY_ADS, method = RequestMethod.POST)
     private List<Ad> getMyAds(@RequestBody String login) {
+        System.out.println("login=>" + login);
         List<Ad> ads = adRepo.getAdsByUserLogin(login);
         System.out.println(ads);
         return ads;
