@@ -6,5 +6,5 @@ import zig.i.carry.model.Ad;
 import java.util.List;
 
 public interface AdRepo extends JpaRepository<Ad, Long> {
-    <T extends Ad> List<T> findByUserLogin(String login);
+    List<Ad> getAdByUserLogin(String login);
 }
