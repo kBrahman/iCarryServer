@@ -38,7 +38,7 @@ public class Controller {
     private static final String PUBLISH = "/publish";
     private static final String OFFERS = "/offers";
     private static final String ORDERS = "/orders";
-    public static final String MY_ADS = "/my_ads";
+    public static final String MY_ADS = "/my-ads";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
