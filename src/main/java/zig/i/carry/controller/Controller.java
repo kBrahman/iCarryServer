@@ -113,7 +113,7 @@ public class Controller {
 
     @RequestMapping(value = "my_ads", method = RequestMethod.GET)
     private List<Ad> getMyAds(@RequestBody String login) {
-        List<Ad> ads = adRepo.getAdByUserLogin(login);
+        List<Ad> ads = adRepo.getAdsByUserLogin(login);
         System.out.println(ads);
         return ads;
     }
