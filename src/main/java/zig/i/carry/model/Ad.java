@@ -24,7 +24,7 @@ public abstract class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "contacts_id")
     private List<Contact> contacts;
     private String countryFrom;
     private String countryTo;
