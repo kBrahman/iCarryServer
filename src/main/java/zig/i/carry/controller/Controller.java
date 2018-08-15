@@ -39,6 +39,7 @@ public class Controller {
     private static final String OFFERS = "/offers";
     private static final String ORDERS = "/orders";
     private static final String MY_ADS = "/my-ads";
+    private static final String DELETE = "/delete";
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
@@ -118,6 +119,12 @@ public class Controller {
         List<Ad> ads = adRepo.getAdsByUserLogin(login.substring(1, login.length() - 1));
         System.out.println(ads);
         return ads;
+    }
+
+    @RequestMapping(value = DELETE, method = RequestMethod.DELETE)
+    private boolean delete(@RequestBody Ad ad) {
+        adRepo.delete(ad);
+        return true;
     }
 
 
