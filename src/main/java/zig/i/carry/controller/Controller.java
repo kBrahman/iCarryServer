@@ -121,7 +121,7 @@ public class Controller {
         return ads;
     }
 
-    @RequestMapping(value = DELETE, method = RequestMethod.DELETE)
+    @RequestMapping(value = DELETE, method = RequestMethod.POST)
     private boolean delete(@RequestBody Ad ad) {
         adRepo.delete(ad);
         return true;
