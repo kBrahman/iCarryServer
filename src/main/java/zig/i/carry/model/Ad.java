@@ -2,6 +2,7 @@ package zig.i.carry.model;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -24,7 +25,8 @@ public abstract class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, mappedBy = "id")
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Contact> contacts;
     private String countryFrom;
     private String countryTo;
