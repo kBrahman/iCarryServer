@@ -123,6 +123,7 @@ public class Controller {
 
     @RequestMapping(value = DELETE, method = RequestMethod.POST)
     private boolean delete(@RequestBody Ad ad) {
+        ad.getContacts().clear();
         adRepo.delete(ad);
         return true;
     }
