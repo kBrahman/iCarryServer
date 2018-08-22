@@ -1,7 +1,5 @@
 package zig.i.carry.controller;
 
-import com.neutrinoapi.sdk.NeutrinoAPIClient;
-import com.neutrinoapi.sdk.models.SMSVerifyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
@@ -15,6 +13,8 @@ import zig.i.carry.model.OrderAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.UserRepo;
+import zig.i.carry.sms.NeutrinoAPIClient;
+import zig.i.carry.sms.SMSVerifyResponse;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -25,8 +25,8 @@ import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import java.util.*;
 
-import static com.neutrinoapi.sdk.Configuration.apiKey;
-import static com.neutrinoapi.sdk.Configuration.userId;
+import static zig.i.carry.sms.Configuration.apiKey;
+import static zig.i.carry.sms.Configuration.userId;
 
 @RestController
 public class Controller {
