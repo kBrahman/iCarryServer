@@ -1,5 +1,7 @@
 package zig.i.carry.controller;
 
+import com.neutrinoapi.sdk.NeutrinoAPIClient;
+import com.neutrinoapi.sdk.models.SMSVerifyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
@@ -22,6 +24,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import java.util.*;
+
+import static com.neutrinoapi.sdk.Configuration.apiKey;
+import static com.neutrinoapi.sdk.Configuration.userId;
 
 @RestController
 public class Controller {
@@ -53,8 +58,11 @@ public class Controller {
     }
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
-    private boolean validate(@RequestBody String email) {
-        return sendVerificationCode(email);
+    private boolean validate(@RequestBody String login) {
+        if (login.matches("\\+?[0-9]{10,13}")) {
+            return sendVerificationSMS(login);
+        }
+        return sendVerificationEmail(login);
     }
 
     @RequestMapping(value = VERIFY, method = RequestMethod.POST)
@@ -144,7 +152,7 @@ public class Controller {
         return PASSWORD_SENT;
     }
 
-    private boolean sendVerificationCode(String email) {
+    private boolean sendVerificationEmail(String email) {
         int i;
         try {
             Message message = createMsg(email);
@@ -177,5 +185,26 @@ public class Controller {
         message.setFrom(new InternetAddress("dev.zig.dev@yandex.ru"));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
         return message;
+    }
+
+
+    private boolean sendVerificationSMS(String login) {
+        login = correct(login);
+        NeutrinoAPIClient client = new NeutrinoAPIClient(userId, apiKey);
+        try {
+            SMSVerifyResponse response = client.getTelephony().sMSVerify(login, 4, null,
+                    null, null);
+            System.out.println(response.getSecurityCode());
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        return true;
+    }
+
+    private String correct(String login) {
+        if (login.startsWith("8")) {
+            login = login.replaceFirst("8", "+7");
+        }
+        return login;
     }
 }
