@@ -59,10 +59,12 @@ public class Controller {
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
     private boolean validate(@RequestBody String login) {
+        System.out.println(login);
         if (login.matches("\\+?[0-9]{10,13}")) {
             System.out.println("matches");
             return sendVerificationSMS(login);
         }
+        System.out.println("sending email");
         return sendVerificationEmail(login);
     }
 
