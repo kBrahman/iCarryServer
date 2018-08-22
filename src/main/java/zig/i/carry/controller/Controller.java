@@ -59,7 +59,8 @@ public class Controller {
         System.out.println("validate login=>" + login);
         if (login.matches("\\+?[0-9]{10,13}")) {
             System.out.println("matches");
-            return sendVerificationSMS(login);
+            boolean sms = sendVerificationSMS(login);
+            return sms;
         }
         System.out.println("sending email");
         return sendVerificationEmail(login);
