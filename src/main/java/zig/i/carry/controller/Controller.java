@@ -22,7 +22,6 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.persistence.EntityManager;
 import java.util.*;
 
 import static zig.i.carry.sms.Configuration.apiKey;
@@ -48,18 +47,16 @@ public class Controller {
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
-    private final EntityManager em;
 
     @Autowired
-    public Controller(UserRepo userRepo, AdRepo adRepo, EntityManager em) {
+    public Controller(UserRepo userRepo, AdRepo adRepo) {
         this.uRepo = userRepo;
         this.adRepo = adRepo;
-        this.em = em;
     }
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
     private boolean validate(@RequestBody String login) {
-        System.out.println(login);
+        System.out.println("validate login=>" + login);
         if (login.matches("\\+?[0-9]{10,13}")) {
             System.out.println("matches");
             return sendVerificationSMS(login);
