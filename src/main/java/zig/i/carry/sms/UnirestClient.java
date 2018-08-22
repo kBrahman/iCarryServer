@@ -172,7 +172,7 @@ public class UnirestClient implements HttpClient {
             uniRequest.fields(request.getParameters());
         }
 
-        //set request headers        
+        //set request headers
         uniRequest.headers(request.getHeaders());
 
         //set json header if needed
