@@ -60,6 +60,7 @@ public class Controller {
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
     private boolean validate(@RequestBody String login) {
         if (login.matches("\\+?[0-9]{10,13}")) {
+            System.out.println("matches");
             return sendVerificationSMS(login);
         }
         return sendVerificationEmail(login);
