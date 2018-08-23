@@ -56,6 +56,7 @@ public class Controller {
 
     @RequestMapping(value = VALIDATE, method = RequestMethod.POST)
     private boolean validate(@RequestBody String login) {
+        login = login.substring(1, login.length() - 1);
         System.out.println("validate login=>" + login);
         if (login.matches("\\+?[0-9]{10,13}")) {
             System.out.println("matches");
@@ -169,7 +170,7 @@ public class Controller {
             e.printStackTrace();
             return false;
         }
-        map.put(email.substring(1, email.length() - 1), i);
+        map.put(email, i);
         System.out.println("email is sent");
         return true;
     }
