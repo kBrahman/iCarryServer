@@ -75,10 +75,14 @@ public class Telephony extends BaseController {
 
         //process query parameters
         Configuration configuration = new Configuration();
-        HashMap<String, Object> parameters = new HashMap<>();
-        parameters.put("user-id", configuration.userId);
-        parameters.put("api-key", configuration.apiKey);
-        APIHelper.appendUrlWithQueryParameters(_queryBuilder, parameters);
+        APIHelper.appendUrlWithQueryParameters(_queryBuilder, new HashMap<>() {
+            private static final long serialVersionUID = 4902901676399440164L;
+
+            {
+                put("user-id", Configuration.userId);
+                put("api-key", Configuration.apiKey);
+            }
+        });
         //validate and preprocess url
         String _queryUrl = APIHelper.cleanUrl(_queryBuilder);
 

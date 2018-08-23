@@ -13,11 +13,9 @@ public class Configuration {
     public static String baseUri = "https://neutrinoapi.com";
 
     //Your user ID
-    @Value("${user-id}")
-    public String userId;
+    public static String userId;
 
     //Your API key
-    @Value("${api-key}")
-    public String apiKey;
+    public static String apiKey;
 
 }

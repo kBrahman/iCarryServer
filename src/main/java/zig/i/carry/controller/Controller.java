@@ -1,6 +1,7 @@
 package zig.i.carry.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,6 @@ import zig.i.carry.model.OrderAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.UserRepo;
-import zig.i.carry.sms.Configuration;
 import zig.i.carry.sms.NeutrinoAPIClient;
 import zig.i.carry.sms.SMSVerifyResponse;
 
@@ -45,6 +45,12 @@ public class Controller {
     private Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
+
+    @Value("${user-id}")
+    private String userId;
+
+    @Value("${api-key}")
+    private String apiKey;
 
     @Autowired
     public Controller(UserRepo userRepo, AdRepo adRepo) {
@@ -190,9 +196,7 @@ public class Controller {
 
     private boolean sendVerificationSMS(String login) {
         login = correct(login);
-        Configuration configuration = new Configuration();
-        String userId = configuration.userId;
-        String apiKey = configuration.apiKey;
+
         NeutrinoAPIClient client = new NeutrinoAPIClient(userId, apiKey);
         System.out.println(userId + ";" + apiKey);
         try {
