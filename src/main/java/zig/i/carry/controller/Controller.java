@@ -194,19 +194,22 @@ public class Controller {
     }
 
 
-    private boolean sendVerificationSMS(String login) {
-        login = correct(login);
+    private boolean sendVerificationSMS(String phone) {
+        phone = correct(phone);
 
         NeutrinoAPIClient client = new NeutrinoAPIClient(userId, apiKey);
         System.out.println(userId + ";" + apiKey);
         try {
-            SMSVerifyResponse response = client.getTelephony().sMSVerify(login, 4, null,
+            SMSVerifyResponse response = client.getTelephony().sMSVerify(phone, 4, null,
                     null, null);
-            System.out.println(response.getSecurityCode());
+            String code = response.getSecurityCode();
+            map.put(phone, Integer.valueOf(code));
+            System.out.println("sms is sent");
+            return true;
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     private String correct(String login) {
