@@ -14,10 +14,10 @@ public class Configuration {
 
     //Your user ID
     @Value("${user-id}")
-    public static String userId;
+    public String userId;
 
     //Your API key
     @Value("${api-key}")
-    public static String apiKey;
+    public String apiKey;
 
 }

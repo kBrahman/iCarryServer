@@ -13,6 +13,7 @@ import zig.i.carry.model.OrderAd;
 import zig.i.carry.model.User;
 import zig.i.carry.repo.AdRepo;
 import zig.i.carry.repo.UserRepo;
+import zig.i.carry.sms.Configuration;
 import zig.i.carry.sms.NeutrinoAPIClient;
 import zig.i.carry.sms.SMSVerifyResponse;
 
@@ -23,9 +24,6 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.*;
-
-import static zig.i.carry.sms.Configuration.apiKey;
-import static zig.i.carry.sms.Configuration.userId;
 
 @RestController
 public class Controller {
@@ -192,6 +190,9 @@ public class Controller {
 
     private boolean sendVerificationSMS(String login) {
         login = correct(login);
+        Configuration configuration = new Configuration();
+        String userId = configuration.userId;
+        String apiKey = configuration.apiKey;
         NeutrinoAPIClient client = new NeutrinoAPIClient(userId, apiKey);
         System.out.println(userId + ";" + apiKey);
         try {
