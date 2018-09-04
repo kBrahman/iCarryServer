@@ -203,6 +203,7 @@ public class Controller {
             SMSVerifyResponse response = client.getTelephony().sMSVerify(phone, 4, null,
                     null, null);
             String code = response.getSecurityCode();
+            System.out.println(code);
             map.put(phone, Integer.valueOf(code));
             System.out.println("sms is sent");
             return true;
