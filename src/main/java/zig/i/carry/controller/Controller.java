@@ -63,7 +63,7 @@ public class Controller {
         login = login.substring(1, login.length() - 1);
         System.out.println("validate login=>" + login);
         if (login.matches("\\+?[0-9]{10,13}")) {
-            System.out.println("matches");
+            System.out.println("it is phone number");
             boolean sms = sendVerificationSMS(login);
             return sms;
         }
@@ -198,13 +198,14 @@ public class Controller {
         phone = correct(phone);
         NeutrinoAPIClient client = new NeutrinoAPIClient(userId, apiKey);
         try {
-            SMSVerifyResponse response = client.getTelephony().sMSVerify(phone, 4, null,
-                    null, null);
-            String code = response.getSecurityCode();
-            System.out.println(code);
-            map.put(phone, Integer.valueOf(code));
-            System.out.println("sms is sent to=>" + phone);
-            return true;
+            SMSVerifyResponse response = client.getTelephony().sMSVerify(phone, 4, null, null, null);
+            if (response.getNumberValid()) {
+                String code = response.getSecurityCode();
+                System.out.println("code=>" + code);
+                map.put(phone, Integer.valueOf(code));
+                System.out.println("sms is sent to=>" + phone);
+                return true;
+            }
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
