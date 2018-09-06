@@ -62,11 +62,11 @@ public class Controller {
     private boolean validate(@RequestBody String login) {
         login = login.substring(1, login.length() - 1);
         System.out.println("validate login=>" + login);
-        if (login.matches("\\+?[0-9]{10,13}")) {
-            System.out.println("it is phone number");
-            boolean sms = sendVerificationSMS(login);
-            return sms;
-        }
+//        if (login.matches("\\+?[0-9]{10,13}")) {
+//            System.out.println("it is phone number");
+//            boolean sms = sendVerificationSMS(login);
+//            return sms;
+//        }
         System.out.println("sending email");
         return sendVerificationEmail(login);
     }
