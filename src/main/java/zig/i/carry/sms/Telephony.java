@@ -21,7 +21,7 @@ public class Telephony extends BaseController {
      *
      * @return The singleton instance of the Telephony class
      */
-    public static Telephony getInstance() {
+    static Telephony getInstance() {
         synchronized (syncObject) {
             if (null == instance) {
                 instance = new Telephony();
