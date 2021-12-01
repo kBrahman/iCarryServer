@@ -40,17 +40,20 @@ public class Controller {
     private static final String PUBLISH = "/publish";
     private static final String OFFERS = "/offers";
     private static final String ORDERS = "/orders";
-    private static final String MY_ADS = "/my-ads";
+    private static final String MY_ADS = "/my_ads";
     private static final String DELETE = "/delete";
-    private Map<String, Integer> map = new HashMap<>();
+    private final Map<String, Integer> map = new HashMap<>();
     private final UserRepo uRepo;
     private final AdRepo adRepo;
 
     @Value("${user-id}")
     private String userId;
-
     @Value("${api-key}")
     private String apiKey;
+    @Value("${email}")
+    private String email;
+    @Value("${pwd}")
+    private String pwd;
 
     @Autowired
     public Controller(UserRepo userRepo, AdRepo adRepo) {
@@ -75,8 +78,12 @@ public class Controller {
     private boolean verify(@RequestBody String emailAndCode) {
         String substring = emailAndCode.substring(1, emailAndCode.length() - 1);
         String[] strings = substring.split(":");
-        System.out.println(VERIFY);
-        return map.remove(strings[0]) != null;
+        Integer val = map.get(strings[0]);
+        int i = Integer.parseInt(strings[1]);
+        if (val == null) return false;
+        boolean b = val == i;
+        if (b) map.remove(strings[0]);
+        return b;
     }
 
     @RequestMapping(value = REGISTER, method = RequestMethod.POST)
@@ -129,15 +136,11 @@ public class Controller {
 
     @RequestMapping(value = MY_ADS, method = RequestMethod.POST)
     private List<Ad> getMyAds(@RequestBody String login) {
-        System.out.println("login=>" + login);
-        List<Ad> ads = adRepo.getAdsByUserLogin(login.substring(1, login.length() - 1));
-        System.out.println(ads);
-        return ads;
+        return adRepo.getAdsByUserLogin(login.substring(1, login.length() - 1));
     }
 
     @RequestMapping(value = DELETE, method = RequestMethod.POST)
     private boolean delete(@RequestBody Ad ad) {
-        System.out.println("delete=>" + ad);
         adRepo.delete(ad);
         return true;
     }
@@ -164,7 +167,7 @@ public class Controller {
             Message message = createMsg(email);
             message.setSubject("VERIFICATION");
             Random r = new Random();
-            i = r.nextInt(1001);
+            i = r.nextInt(10001);
             String randomNumber = String.format("%04d", i);
             message.setText(randomNumber);
             Transport smtp = message.getSession().getTransport("smtp");
@@ -175,7 +178,6 @@ public class Controller {
             return false;
         }
         map.put(email, i);
-        System.out.println("email is sent");
         return true;
     }
 
